@@ -1,0 +1,1 @@
+python python-initializer/project_initializer.py %1
