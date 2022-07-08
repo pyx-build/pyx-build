@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -132,5 +129,5 @@ dmypy.json
 .pyre/
 pyvenv.cfg
 Scripts
-!python-initializer/scripts
->>>>>>> main
+!python_initializer/scripts
+Include

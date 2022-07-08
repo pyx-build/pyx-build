@@ -1,9 +1,13 @@
 import os
 import platform
 import sys
+import shutil
 
 def init(path):
+
     script_location = os.path.dirname(__file__)
+    base_pkg_location = os.path.relpath(script_location, "python_initializer")
+
     os.mkdir(f"{path}/src")
     os.mkdir(f"{path}/dependencies")
 
@@ -21,6 +25,7 @@ def init(path):
         with open(f"{script_location}/scripts/runner.copy") as runner_copy:
             runner.write(runner_copy.read())
 
+    shutil.copytree(f"{base_pkg_location}/pyx_build", f"{path}/pyx_build")
 
     if platform.system() == "Windows":
         with open(f"{path}/pyx.ps1", 'w') as pyx_exec_windows:
@@ -28,9 +33,9 @@ def init(path):
                 pyx_exec_windows.write(win_batch.read())
 
     else:
-        with open(f"{path}/pyx.sh", 'w') as pyx_exec_windows:
+        with open(f"{path}/pyx.sh", 'w') as pyx_exec_unix:
             with open(f"{script_location}/linux-unix/pyx.sh", 'r') as unix_shell_script:
-                unix_shell_script.write(win_batch.read())
+                pyx_exec_unix.write(unix_shell_script.read())
 
 init(sys.argv[1])
     

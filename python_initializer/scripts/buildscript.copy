@@ -7,9 +7,10 @@ class PyxBuildScript(PyxBaseBuildScript):
     # Define custom repositories to retrieve dependencies from. If it's not overridden, then the
     # parent method would be called, which would just provide the pypi repository
     def repositories():
-        # repository("https://pypi.org/")
+        # super.add_repositories([repository("https://pypi.org/", "pypi", True)])
+        super.repositories()
 
-    # This will download the dependencies of your project using pyxpm (PyX Project Manager).
+    # This will download the dependencies of your project using pyxpm (PyX Package Manager).
     # Define a dependency with the dependency(name, version) method.
     def dependencies():
         # pull("dependency_name", version="1.0.0")
@@ -33,6 +34,7 @@ class PyxBuildScript(PyxBaseBuildScript):
         super.build(build_distributed_executable)
         # Write code for executing extra stuff while building
 
+    # Executed when project is run
     def run():
         super.run()
         # Write code for executing extra stuff while running
