@@ -131,3 +131,4 @@ pyvenv.cfg
 Scripts
 !python_initializer/scripts
 Include
+gen-build.bat

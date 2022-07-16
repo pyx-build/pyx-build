@@ -1,24 +1,8 @@
-from pyx_build.dsl import repository
+import pyx_build
 import os
 import platform
 
 class PyxBaseBuildScript:
-
-    _repositories = list()
-    
-    def repositories(self):
-        self.add_repository(repository("https://pypi.org", "pypi", True))
-        os.mkdir("local_project_cache/repositories")
-
-        for repository in self._repositories:
-            for element in repository:
-                with open(f"local_project_cache/repositories/{element}") as repo:
-                    repo.write(repository[element])
-
-    def add_repositories(self, repository_list):
-        for repo_dict in repository_list:
-            for element in repo_dict:
-                self._repositories.append({element:repo_dict[element]})
 
     def build_distributed_executables():
         return True

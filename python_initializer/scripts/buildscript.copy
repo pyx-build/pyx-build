@@ -1,4 +1,6 @@
-from pyx_build import PyxBaseBuildScript, pull, app_name, app_version, python_version, submodule, repository
+from pyx_build.base import PyxBaseBuildScript
+from pyx_build.dsl import repository
+from pyx_build.pyxpm.get_dependencies import pull
 
 class PyxBuildScript(PyxBaseBuildScript):
 
@@ -6,48 +8,50 @@ class PyxBuildScript(PyxBaseBuildScript):
 
     # Define custom repositories to retrieve dependencies from. If it's not overridden, then the
     # parent method would be called, which would just provide the pypi repository
-    def repositories():
-        # super.add_repositories([repository("https://pypi.org/", "pypi", True)])
-        super.repositories()
+    def repositories(self):
+        repository("https://pypi.org", "pypi", True)
 
     # This will download the dependencies of your project using pyxpm (PyX Package Manager).
     # Define a dependency with the dependency(name, version) method.
-    def dependencies():
+    def dependencies(self):
+        pull("numpy", "1.23.1")
         # pull("dependency_name", version="1.0.0")
 
     # Decide whether to build a distributed executable or an egg package
-    def build_distributed_executables():
-        # return true
+    def build_distributed_executables(self):
+        return true
 
     # Define application details 
-    def application_details():
+    def application_details(self):
         # app_name("My_App")
         # app_version("1.0.0")
         # python_version("3.8.2")
+        print("app")
 
     # List the submodules you would want to include in the package
-    def submodules():
+    def submodules(self):
         # submodule(name="sub_module_name")
+        print("Submodules")
 
     # Executed when project is built
-    def build(build_distributed_executable):
-        super.build(build_distributed_executable)
+    def build(self, build_distributed_executable):
+        super().build(build_distributed_executable)
         # Write code for executing extra stuff while building
 
     # Executed when project is run
-    def run():
-        super.run()
+    def run(self):
+        super().run()
         # Write code for executing extra stuff while running
 
-    def register_tasks():
-        super.register_tasks() # The super call should not be removed
-        super.add_task(task1) 
-        super.add_task(task2)
+    def register_tasks(self):
+        super().register_tasks() # The super call should not be removed
+        super().add_task(self.task1) 
+        super().add_task(self.task2)
 
-    def task1():
+    def task1(self):
         print("Executing task 1")
         
-    def task2():
+    def task2(self):
         print("Executing task 2")
 
     

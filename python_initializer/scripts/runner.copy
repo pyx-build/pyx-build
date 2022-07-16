@@ -15,4 +15,4 @@ elif sys.argv[1] == "build":
 elif sys.argv[1] in buildscript_obj.get_tasks():
     buildscript_obj.execute_task(sys.argv[1])
 else:
-    throw Exception("Unknown Task")
+    raise Exception("Unknown Task")
