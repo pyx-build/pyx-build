@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the workflow will run
@@ -29,6 +27,8 @@ jobs:
       - name: run pyx
         run: |
           mkdir pyx-test
-          ./pyx-init $GITHUB_WORKSPACE/pyx-test
+          sudo chmod +x pyx-init.sh
+          ./pyx-init.sh $GITHUB_WORKSPACE/pyx-test
           cd pyx-test
+          sudo chmod +x pyx.sh
           ./pyx.sh

@@ -1,7 +1,7 @@
 !#/bin/bash
 
 {
-    python runner.py $1 &&
+    python runner.py $1 
 } || {
     mkdir python
     cd python

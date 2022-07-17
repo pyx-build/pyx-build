@@ -8,11 +8,16 @@ buildscript_obj.dependencies()
 buildscript_obj.application_details()
 buildscript_obj.submodules()
 
-if sys.argv[1] == "run":
+
+if len(sys.argv) == 1:
+    pass
+elif sys.argv[1] == "run":
     buildscript_obj.run()
 elif sys.argv[1] == "build":
     buildscript_obj.build(buildscript_obj.build_distributed_executables())
+elif sys.argv[1] == "devbuild":
+    pass
 elif sys.argv[1] in buildscript_obj.get_tasks():
     buildscript_obj.execute_task(sys.argv[1])
 else:
-    throw Exception("Unknown Task")
+    raise Exception("Unknown Task")
