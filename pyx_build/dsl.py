@@ -3,6 +3,11 @@ import pathlib
 import os
 
 
+class DependencyNotFoundException(Exception):
+    
+    def __init__(self, message):
+        super().__init__(message)
+
 class NoRepositoriesFoundException(Exception):
 
     def __init__(self, message):
